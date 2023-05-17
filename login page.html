@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>User Login</h1>
+    <div class="form-group">
+      <label for="username">
+Username</label>
+  <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]{3,}" title="Username must be at least 9 characters long and can only contain letters and numbers." placeholder="Enter Username" required>
+</div>
+<div class="form-group">
+<label for="password">Password</label>
+<input type="password" id="password" pattern="^(?=.[a-z])(?=.[A-Z])(?=.*\d).{8,}$" placeholder="Enter your password" required>
+</div>
+<div class="form-group">
+<button onclick="login()">Login</button>
+<p class="error-message" id="error-message"></p>
+</div>
+<div class="form-group">
+<button onclick="openModal()">Sign Up</button>
+</div>
+
+  </div>
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2>Sign Up</h2>
+      <div class="form-group">
+        <label for="signup-username">Username</label>
+        <input type="text" id="signup-username" placeholder="Enter your username">
+      </div>
+      <div class="form-group">
+        <label for="signup-email">Email</label>
+        <input type="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  style=width:310px; placeholder="please enter your E-mail" required>
+      </div>
+      <div class="form-group">
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" placeholder="Enter your password">
+      </div>
+      <div class="form-group">
+        <button onclick="register()">Submit</button>
+      </div>
+    </div>
+  </div>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: pink;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      width: 300px;
+    }
+
+    .container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .form-group .error-message {
+      color: red;
+      margin-top: 5px;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 20px;
+      border-radius: 2px;
+      background-color: #1877f2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: navy;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 300px;
+    }
+
+    .modal-content h2 {
+      text-align: center;
+    }
+
+    .modal-content .form-group {
+      margin-bottom: 15px;
+    }
+
+    .modal-content .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+
+    .modal-content .form-group input[type="text"],
+    .modal-content .form-group input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    .modal-content .form-group button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 3px;
+      background-color: #1877f2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    function login() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      if (username === '' || password === '') {
+        document.getElementById('error-message').textContent = 'Username or password is empty';
+      } else {
+	      alert("The details has been saved successfully");
+      }
+    }
+
+    function openModal() {
+      document.getElementById('modal').style.display = 'block';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function register() {
+      var signupUsername = document.getElementById('signup-username').value;
+      var signupPassword = document.getElementById('signup-password').value;
+
+      if (signupUsername !== '' && signupPassword !== '') {
+        var modalContent = document.querySelector('.modal-content');
+        modalContent.innerHTML = '<h2>Sign Up Details</h2>' +
+          '<p>Username: ' + signupUsername + '</p>' +
+          '<p>Password: ' + signupPassword + '</p>';
+      }
+    }
+  </script>
+</body>
+</html>
